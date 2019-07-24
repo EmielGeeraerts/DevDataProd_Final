@@ -8,6 +8,18 @@
 #
 
 library(shiny)
+library(ggplot2)
+
+#Load diamonds dataset
+data("diamonds")
+
+#simplify dataset by filtering out diamonds of perfect clarity
+diamonds <- diamonds[diamonds$clarity == "VS2",]
+
+#Keep only columns of interest
+diamonds <- diamonds[,c("price","carat","cut","color")]
+diamonds$cut <- factor(diamonds$cut, ordered = F)
+diamonds$color <- factor(diamonds$color, ordered = F)
 
 # Define UI for application that draws a histogram
 shinyUI(fluidPage(
